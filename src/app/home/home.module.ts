@@ -3,6 +3,10 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { HomeComponent } from './home/home.component';
 import { MainContentComponent } from './main-content/main-content.component';
+import { HomeRoutingModule } from './home-routing.module';
+import { BookingModule } from '../booking/booking.module';
+import { UserModule } from '../user/user.module';
+import { CoreModule } from '../core/core.module';
 
 
 
@@ -10,9 +14,15 @@ import { MainContentComponent } from './main-content/main-content.component';
   declarations: [HomeComponent, MainContentComponent],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    BookingModule,
+    UserModule,
+
+    HomeRoutingModule,
   ], exports: [
     HomeComponent,
+    HomeRoutingModule,
+    MainContentComponent
   ]
 })
 export class HomeModule { }

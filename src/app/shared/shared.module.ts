@@ -9,6 +9,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { SignupComponent } from './signup/signup.component';
 import { FormsModule } from '@angular/forms';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
   declarations: [
@@ -17,12 +18,14 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     SigninModalComponent,
     SigninComponent,
     SignupComponent,
-    ResetPasswordComponent],
+    ResetPasswordComponent,
+  ],
   imports: [
     CommonModule,
     ModalModule.forRoot(),
     TabsModule.forRoot(),
-    FormsModule
+    FormsModule,
+    CoreModule
   ],
   exports: [NavBarComponent, FooterComponent, SigninModalComponent]
 })

@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BookVehicleComponent } from './book-vehicle/book-vehicle.component';
+import { BookingRoutingModule } from './booking-routing.module';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [BookVehicleComponent],
   imports: [
-    CommonModule
-  ]
+    CommonModule,
+    BookingRoutingModule
+  ],
+  exports: [BookVehicleComponent, BookingRoutingModule]
 })
 export class BookingModule { }

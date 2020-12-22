@@ -9,6 +9,10 @@ import { HomeComponent } from './home/home/home.component';
 import { MainContentComponent } from './home/main-content/main-content.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HomeModule } from './home/home.module';
+import { BookingRoutingModule } from './booking/booking-routing.module';
+import { CoreRoutingModule } from './core/core-routing.module';
+import { HomeRoutingModule } from './home/home-routing.module';
+import { UserRoutingModule } from './user/user-routing.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,7 @@ import { HomeModule } from './home/home.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HomeModule
+    HomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
