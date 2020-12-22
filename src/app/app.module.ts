@@ -8,19 +8,17 @@ import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
 import { HomeComponent } from './home/home/home.component';
 import { MainContentComponent } from './home/main-content/main-content.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { HomeModule } from './home/home.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavBarComponent,
-    HomeComponent,
-    MainContentComponent,
-    FooterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
