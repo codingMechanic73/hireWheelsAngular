@@ -1,0 +1,28 @@
+<button class="btn btn-primary" id="sign" (click)="openModal(template)">Sign In</button>
+<ng-template #template>
+    <div class="modal-header modal-lg">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="modal-body">
+            <tabset #staticTabs [justified]="true">
+                <tab>
+                    <ng-template tabHeading>
+                        <i class="fa fa-sign-in" aria-hidden="true"></i>
+                        Sign In
+                    </ng-template>
+                    <app-signin (onSignUp)="selectTab($event)"></app-signin>
+                </tab>
+                <tab>
+                    <ng-template tabHeading>
+                        <i class="fa fa-user-plus" aria-hidden="true"></i>
+                        Sign Up
+                    </ng-template>
+                    <app-signup></app-signup>
+                </tab>
+            </tabset>
+        </div>
+    </div>
+</ng-template>

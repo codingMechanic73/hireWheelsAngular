@@ -1,0 +1,70 @@
+<div class="signInBlock">
+    <div class="card">
+        <div class="card-header">
+            <h3> Sign In</h3>
+        </div>
+        <div class="card-body">
+            <form (ngSubmit)='onSubmit(signinForm.value)' #signinForm="ngForm">
+                <div class="form-group row">
+                    <label for="email" class="col-lg-3 col-form-label">Email ID:</label>
+                    <div class="col-lg-9">
+                        <input type="email" name="email" [(ngModel)]="inputEmail" class="form-control" required
+                            #emailid="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}">
+                        <div *ngIf="emailid.invalid && (emailid.dirty || emailid.touched)" class="text-danger">
+                            <div *ngIf="emailid.errors.required">
+                                Email id is required.
+                            </div>
+                            <div *ngIf="emailid.errors.pattern">
+                                Enter a valid email address
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="password" class="col-lg-3 col-form-label">Password:</label>
+                    <div class="col-lg-9"><input type="password" name="password" [(ngModel)]="inputPassword"
+                            class="form-control" required #passwd="ngModel">
+                        <div *ngIf="passwd.invalid && (passwd.dirty || passwd.touched)" class="text-danger">
+                            <div *ngIf="passwd.errors.required">
+                                Password is required.
+                            </div>
+
+                        </div>
+                    </div>
+                </div><br>
+                <div class="form-group row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6"><input type="submit" class="btn btn-primary btn-lg btn-block" value="Sign In"
+                            [disabled]="!signinForm.valid"></div>
+                    <div class="col-md-3"></div>
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+
+    <div class="forgot-password">
+        <div class="signin__links">
+            <button class="btn btn-link signin-forgotpassword" style="cursor: pointer;" (click)="openModal(template)">
+                Forgot Password</button>
+            <div class="signup-group">
+                <span>Dont have an account?</span>
+                <span class="btn btn-link signin-forgotpassword" style="cursor: pointer;" (click)="openSignUp()">
+                    Sign Up</span>
+            </div>
+        </div>
+    </div>
+    <ng-template #template>
+        <div class="modal-header">
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <app-reset-password></app-reset-password>
+        </div>
+    </ng-template>
+</div>
