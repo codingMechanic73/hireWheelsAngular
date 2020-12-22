@@ -1,0 +1,27 @@
+.footer {
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  color: white;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+
+.footer__social-link:link,
+.footer__social-link:visited,
+.footer__social-link:hover,
+.footer__social-link:active {
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+}
+
+
+.footer__copyright {
+  color: grey;
+}
