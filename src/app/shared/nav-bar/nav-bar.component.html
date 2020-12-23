@@ -3,5 +3,26 @@
         <i class="fa fa-car nav__logo-img" aria-hidden="true"></i>
         <span class="nav__logo-text">HireWheels</span>
     </a>
-    <app-signin-modal></app-signin-modal>
+
+
+    <div class="btn-group nav-item dropdown" *ngIf="userDetails?.roleName else notLoggedIn">
+        <div class="btn-group" dropdown>
+            <button id="button-animated" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+                aria-controls="dropdown-animated">
+                {{userDetails.firstName}} <span class="caret"></span>
+            </button>
+            <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu" role="menu"
+                aria-labelledby="button-animated">
+                <li *ngIf="userDetails?.roleName === 'Admin'" role="menuitem"><a routerLink="/admin"
+                        class="dropdown-item">Dashboard</a></li>
+                <li *ngIf="userDetails?.roleName === 'User'" role="menuitem"><a routerLink=""
+                        class="dropdown-item">{{userDetails.walletMoney | currency:'INR'}}</a></li>
+                <li role="menuitem"><a class="dropdown-item" (click)="handleSignOut()">Logout</a>
+            </ul>
+        </div>
+    </div>
+
+    <ng-template #notLoggedIn>
+        <app-signin-modal></app-signin-modal>
+    </ng-template>
 </nav>

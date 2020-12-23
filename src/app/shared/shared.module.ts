@@ -10,6 +10,11 @@ import { SignupComponent } from './signup/signup.component';
 import { FormsModule } from '@angular/forms';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { CoreModule } from '../core/core.module';
+import {HttpClientModule} from '@angular/common/http'
+
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 @NgModule({
   declarations: [
@@ -19,13 +24,18 @@ import { CoreModule } from '../core/core.module';
     SigninComponent,
     SignupComponent,
     ResetPasswordComponent,
+    
   ],
   imports: [
     CommonModule,
     ModalModule.forRoot(),
     TabsModule.forRoot(),
     FormsModule,
-    CoreModule
+    CoreModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    BsDropdownModule.forRoot()
+
   ],
   exports: [NavBarComponent, FooterComponent, SigninModalComponent]
 })
