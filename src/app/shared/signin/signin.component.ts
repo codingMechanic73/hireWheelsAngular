@@ -33,7 +33,7 @@ export class SigninComponent implements OnInit {
 
       }, (error) => {
         this.accountSuccess = -1;
-        this.message = error['message'];
+        this.message = error['message']? error['message']: "Not network";
       }
     )
 

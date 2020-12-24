@@ -16,7 +16,7 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.userDetails = this.authService.getUser();
-    
+
     if (this.userDetails != null) {
       this.updateNavLinks();
     }
@@ -24,9 +24,13 @@ export class NavBarComponent implements OnInit {
     this.authService.user.subscribe(userDetails => {
       this.userDetails = userDetails;
       this.updateNavLinks();
+      if (userDetails == null) {
+        this.router.navigate(['home'], { relativeTo: this.activatedRoute });
+      }
+
     });
   }
-  navLinks: {label: string, route: string}
+  navLinks: { label: string, route: string }
 
   userNavLinks = {
     label: `wallet`,
@@ -38,13 +42,13 @@ export class NavBarComponent implements OnInit {
       label: 'Dashboard',
       route: 'admin',
     }
-  ;
+    ;
 
   updateNavLinks() {
     if (this.userDetails && this.userDetails.roleName === 'Admin') {
       this.navLinks = this.adminNavLinks;
     } else {
-      
+
       this.userNavLinks.label = `${this.userDetails.walletMoney}`;
       this.navLinks = this.userNavLinks;
     }

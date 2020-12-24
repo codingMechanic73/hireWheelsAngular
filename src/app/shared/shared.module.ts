@@ -10,11 +10,12 @@ import { SignupComponent } from './signup/signup.component';
 import { FormsModule } from '@angular/forms';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { CoreModule } from '../core/core.module';
-import {HttpClientModule} from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { CustomInterceptorService } from './custom-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     SigninComponent,
     SignupComponent,
     ResetPasswordComponent,
-    
+
   ],
   imports: [
     CommonModule,
@@ -36,6 +37,12 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     BrowserAnimationsModule,
     BsDropdownModule.forRoot()
 
+  ], providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CustomInterceptorService,
+      multi: true
+    }
   ],
   exports: [NavBarComponent, FooterComponent, SigninModalComponent]
 })

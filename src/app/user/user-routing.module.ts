@@ -4,8 +4,8 @@ import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 
 
-const routes: Routes = [{path: 'admin', component: AdminDashboardComponent},
-{path: 'addvehicle', component: AddVehicleComponent}];
+const routes: Routes = [{ path: 'admin', component: AdminDashboardComponent },
+{ path: 'addvehicle', component: AddVehicleComponent }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

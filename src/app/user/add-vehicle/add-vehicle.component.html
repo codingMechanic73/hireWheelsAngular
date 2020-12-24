@@ -1,2 +1,187 @@
-<div class="container"><p>add-vehicle works!</p>
+<div class="container">
+    <a (click)="goBack()" style="cursor: pointer;"><i class="fa fa-arrow-left" aria-hidden="true"></i>Back to Dashboard</a>
+    <div *ngIf="accountSuccess === 1" class="alert alert-success" role="alert">
+        {{message}}
+    </div>
+    <div *ngIf="accountSuccess === -1" class="alert alert-danger" role="alert">
+        {{message}}
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3> Sign Up</h3>
+        </div>
+        <div class="card-body">
+            <div class="container">
+                <form [formGroup]="vehicleForm" (ngSubmit)="addVehicle(vehicleForm)">
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="vehicleModel" class="form-label">Vehicle Name</label>
+
+                            <input type="text" class="form-control " id="vehicleModel" formControlName="vehicleModel"
+                                [ngClass]="{
+                                 'is-invalid': 
+                                   (vehicleForm.get('vehicleModel').touched ||
+                                     vehicleForm.get('vehicleModel').dirty) &&
+                                   !vehicleForm.get('vehicleModel').valid
+                               }">
+                            <span class="invalid-feedback">
+                                <span *ngIf="vehicleForm.get('vehicleModel').errors?.required">
+                                    Vehicle Name is required.
+                                </span>
+                            </span>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="vehicleNumber" class="form-label">Vehicle Number</label>
+
+                            <input type="text" class="form-control " id="vehicleNumber" formControlName="vehicleNumber"
+                                [ngClass]="{
+                             'is-invalid': 
+                               (vehicleForm.get('vehicleNumber').touched ||
+                                 vehicleForm.get('vehicleNumber').dirty) &&
+                               !vehicleForm.get('vehicleNumber').valid
+                           }" />
+                            <span class="invalid-feedback">
+                                <span *ngIf="vehicleForm.get('vehicleNumber').errors?.required">
+                                    Vehicle Number is required.
+                                </span>
+
+                            </span>
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="vehicleCategoryId" class="form-label">Vehicle Category</label>
+
+                            <select type="text" name="vehicleCategoryId" class="form-control" id="vehicleCategoryId"
+                                formControlName="vehicleCategoryId" [ngClass]="{
+                         'is-invalid': 
+                           (vehicleForm.get('vehicleCategoryId').touched ||
+                             vehicleForm.get('vehicleCategoryId').dirty) &&
+                           !vehicleForm.get('vehicleCategoryId').valid
+                       }">
+                                <option disabled>Select Category</option>
+                                <option [value]="category.value" *ngFor="let category of categories">
+                                    {{category.name}}</option>
+                            </select>
+                            <span class="invalid-feedback">
+                                <span *ngIf="vehicleForm.get('vehicleCategoryId').errors?.required">
+                                    Vehicle Category is required.
+                                </span>
+
+                            </span>
+                        </div>
+                        <div class="col-md-6">
+
+                            <label for="fuelTypeId" class="form-label">Fuel Type:</label>
+
+                            <select type="text" name="fuelTypeId" class="form-control" id="fuelTypeId"
+                                formControlName="fuelTypeId" required [ngClass]="{
+                                    'is-invalid': 
+                                      (vehicleForm.get('fuelTypeId').touched ||
+                                        vehicleForm.get('fuelTypeId').dirty) &&
+                                      !vehicleForm.get('fuelTypeId').valid
+                                  }">
+                                <option disabled>Select Fuel Type</option>
+                                <option [value]="fuelType.value" *ngFor="let fuelType of fuelTypes">
+                                    {{fuelType.name}}</option>
+                            </select>
+                            <span class="invalid-feedback">
+                                <span *ngIf="vehicleForm.get('fuelTypeId').errors?.required">
+                                    Fuel Type is required
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="vehicleSubCategoryId" class="form-label">Vehicle Subcategory</label>
+                            <select type="text" name="vehicleSubCategoryId" class="form-control"
+                                id="vehicleSubCategoryId" formControlName="vehicleSubCategoryId" required [ngClass]="{
+                                    'is-invalid': 
+                                      (vehicleForm.get('vehicleSubCategoryId').touched ||
+                                        vehicleForm.get('vehicleSubCategoryId').dirty) &&
+                                      !vehicleForm.get('vehicleSubCategoryId').valid
+                                  }">
+                                <option disabled>Select Country</option>
+                                <option [value]="subCategory.value"
+                                    *ngFor="let subCategory of categories[subcategoryIndex-1].subCategories">
+                                    {{subCategory.name}}</option>
+                            </select>
+                            <span class="invalid-feedback">
+                                <span *ngIf="vehicleForm.get('vehicleSubCategoryId').errors?.required">
+                                    Vehicle Subcategory is Required.
+                                </span>
+                            </span>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="color" class="form-label">Color</label>
+
+                            <input type="text" class="form-control" id="color" formControlName="color" [ngClass]="{
+                         'is-invalid': 
+                           (vehicleForm.get('color').touched ||
+                             vehicleForm.get('color').dirty) &&
+                           !vehicleForm.get('color').valid
+                       }" />
+                            <span class="invalid-feedback">
+                                <span *ngIf="vehicleForm.get('color').errors?.required">
+                                    Color is required.
+                                </span>
+                            </span>
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="locationId" class="form-label">Available Location</label>
+
+
+                            <select type="text" name="locationId" class="form-control" id="locationId"
+                                formControlName="locationId" required [ngClass]="{
+                                    'is-invalid': 
+                                      (vehicleForm.get('locationId').touched ||
+                                        vehicleForm.get('locationId').dirty) &&
+                                      !vehicleForm.get('locationId').valid
+                                  }">
+                                <option disabled>Select Location</option>
+                                <option [value]="location.value" *ngFor="let location of vehicleLocations">
+                                    {{location.name}}</option>
+                            </select>
+                            <span class="invalid-feedback">
+                                <span *ngIf="vehicleForm.get('locationId').errors?.required">
+                                    Location is Required.
+                                </span>
+
+                            </span>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="carImageUrl" class="form-label">Image URL</label>
+
+                            <input type="carImageUrl" class="form-control " id="carImageUrl"
+                                formControlName="carImageUrl" [ngClass]="{
+                                 'is-invalid': 
+                                   (vehicleForm.get('carImageUrl').touched ||
+                                     vehicleForm.get('carImageUrl').dirty) &&
+                                   !vehicleForm.get('carImageUrl').valid
+                               }" />
+                            <span class="invalid-feedback">
+                                <span *ngIf="vehicleForm.get('carImageUrl').errors?.required">
+                                    Image URL is required.
+                                </span>
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4"><input type="submit" class="btn btn-primary" style="width: 100%;"
+                                value="Upload Details" [disabled]="!vehicleForm.valid"></div>
+                        <div class="col-md-4"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 </div>

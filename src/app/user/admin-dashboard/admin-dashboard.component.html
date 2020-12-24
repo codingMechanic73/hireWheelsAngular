@@ -1,3 +1,41 @@
 <div class="container">
-    <p>admin-dashboard works!</p>
+    <h1>Available Vehicles</h1>
+    <hr>
+    <hr>
+    <span *ngIf="errorCode == 1" class="alert-danger alert" >
+        {{message}}
+    </span>
+    <a routerLink="/addvehicle" class="add-vehicle__btn">
+        <i class="fa fa-plus-circle" aria-hidden="true"></i>
+        Add vehicles
+    </a>
+    <div *ngIf="isLoading; else tableBlock">
+        <i class="fa fa-spinner fa-5x" aria-hidden="true"></i>
+    </div>
+    <ng-template #tableBlock>
+        <table *ngIf="vehicleList?.length > 0; else elseBlock" class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Image</th>
+                    <th scope="col">Model</th>
+                    <th scope="col">Number</th>
+                    <th scope="col">Sub Category</th>
+                    <th scope="col">Fuel Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let vechile of vehicleList">
+                    <td><img [src]="vechile.carImageUrl" [alt]="vechile.vehicleModel" class="vehicle_img"></td>
+                    <td>{{vechile.vehicleModel}}</td>
+                    <td>{{vechile.vehicleNumber}}</td>
+                    <td>{{getSubcategory(vechile.vehicleSubCategoryId)}}</td>
+                    <td>{{getFuel(vechile.fuelTypeId)}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+        <ng-template #elseBlock>
+            <h3>No data to display. Please add some vehicles.</h3>
+        </ng-template>
+    </ng-template>
 </div>
